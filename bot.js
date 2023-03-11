@@ -1,12 +1,25 @@
 require("dotenv/config");
-const { token } = process.env;
-const { Client, Events, GatewayIntentBits } = require("discord.js");
-const { Commands, Chef } = require("./Pasta");
+const fs = require("fs");
+const { join } = require("path");
+const { token, MONGO_URL } = process.env;
 
-// Reads directories synchronously before even connecting to discord
+// Database connection
+const mongoose = require("mongoose");
+mongoose.connect(MONGO_URL).then(() => console.log(`Connected to MongoDB!`));
+process.on("SIGKILL", () => mongoose.disconnect());
+
+// Load models
+const models = join(__dirname, "models");
+fs.readdirSync(models).forEach((file) => {
+  require(join(models, file));
+});
+
+// Create the Chef instance
+const { Commands, Chef } = require("./Pasta");
 const Remy = new Chef();
 
 // New client, ask for permissions
+const { Client, Events, GatewayIntentBits } = require("discord.js");
 const DiscordClient = new Client({
   intents: [
     GatewayIntentBits.Guilds,
