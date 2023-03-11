@@ -2,6 +2,31 @@
 
 A discord bot for managing copypasta. [Invite Pasta](https://discord.com/api/oauth2/authorize?client_id=1082801178930327613&permissions=274878196736&scope=bot) today!
 
+# TODO:
+
+- Image commands for adding embed image
+- The color commands for changing embed strip
+- Store guild information
+  - Guild { mutedChannels: [], allowedChannels: [] }
+  - Can only trigger pasta commands (other than posting) in the pastaChannel
+  - Only admins can set allowed channels
+- Admin commands
+  - `🍝 channel` sets pastaChannel
+  - `🍝 channels` print channel information
+  - `🍝 mute` no pasta in current channel
+- Make pasta lockable / unlockable (only owner / admin can edit)
+  - `🔒 <name>` locks pasta
+  - `🔓 <name>` unlocks pasta
+- Make `🍝` multi-use
+  - `🍝` lists help
+  - `🍝 all` lists all pasta
+  - `🍝 <name>` posts pasta
+  - `🍝 <name> <content>` edits pasta
+- Store user information
+  - User { ignoreEmojis: ["💀"] }
+- Stealth commands `["🥷", "🕴️"]`
+- Handle custom emotes `<a::>` => `<::>`
+
 # Commands
 
 ## Write pasta
